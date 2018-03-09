@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def new
-    @users = User.new
+    @user = User.new
     render :new
   end
 
@@ -9,11 +9,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = "Welcome to MusicApp"
-      redirect_to user_url(@user)
+      flash[:success] = "Welcome to Music App"
+      redirect_to new_session_url
     else
-      flash.now[:errors] = @users.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render :new
+    end
   end
 
   def show
